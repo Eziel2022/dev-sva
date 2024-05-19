@@ -57,6 +57,7 @@ TEMPLATES = [
     },
 ]
 
+
 WSGI_APPLICATION = 'Sva.wsgi.application'
 
 
