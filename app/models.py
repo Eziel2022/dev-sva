@@ -34,3 +34,25 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+
+class Notification(models.Model):
+    title = models.CharField(max_length=255)
+    message = models.TextField()
+    user = models.ForeignKey(MyUser, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    scheduled_for = models.DateTimeField()
+    sent = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.title
+    
+
+class Event(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    date = models.DateTimeField()
+    location = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name
+

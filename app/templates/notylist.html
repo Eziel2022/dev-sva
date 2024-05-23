@@ -1,0 +1,19 @@
+{% extends 'app/index.html' %}
+
+{% block title %}
+Lista de Notificaciones
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Lista de Notificaciones</h2>
+    <ul class="list-group">
+        {% for notification in notifications %}
+        <li class="list-group-item">
+            <strong>{{ notification.title }}</strong>: {{ notification.message }}
+            <small class="text-muted">{{ notification.created_at }}</small>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

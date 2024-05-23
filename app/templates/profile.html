@@ -1,0 +1,22 @@
+{% extends 'app/index.html' %}
+
+{% block title %}
+Perfil de usuario
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="text-center">Perfil de usuario</h2>
+                </div>
+                <div class="card-body">
+                    <p><strong>Correo electrónico:</strong> {{ user.email }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
