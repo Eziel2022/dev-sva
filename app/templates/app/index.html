@@ -29,8 +29,25 @@
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="{% url 'notycreate' %}">Create Notification</a></li>
+              <li><a class="dropdown-item" href="{% url 'create_event' %}">Create Event</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              View
+            </a>
+            <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="{% url 'notification_list' %}">View Notifications</a></li>
               <li><a class="dropdown-item" href="{% url 'eventlist' %}">View Events</a></li>
+              <li><a class="dropdown-item" href="{% url 'lista_alumnos' %}">View Students</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Add
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'agregar_alumno' %}">Student</a></li>
             </ul>
           </li>
           <li class="nav-item">
@@ -49,7 +66,7 @@
         </ul>
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
-          <button class="btn btn-outline-success" type="submit">Buscar</button>
+          <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
       </div>
     </div>

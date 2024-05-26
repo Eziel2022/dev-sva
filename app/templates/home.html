@@ -1,0 +1,82 @@
+{% extends 'app/index.html' %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background-color: #f2f2f2;
+    }
+    .container {
+        max-width: 800px;
+        margin: 50px auto;
+        text-align: center;
+        background-color: white; 
+        padding: 30px; 
+        border-radius: 10px; 
+        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    }
+    .title {
+        font-size: 36px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 20px;
+        background: linear-gradient(to right, #007bff, #66aaff);
+        display: inline;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .description {
+        font-size: 18px;
+        color: #666;
+        margin-bottom: 30px;
+    }
+    .event-card {
+        margin-bottom: 30px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .event-card img {
+        width: 100%;
+        height: auto;
+    }
+    .event-card .card-body {
+        padding: 30px;
+    }
+    .event-card .card-title {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 20px;
+    }
+    .event-card .card-text {
+        font-size: 18px;
+        color: #666;
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="title">Student Virtual Assistant</div>
+        </div>
+    </div>
+    <div class="row">
+        {% for event in events %}
+        <div class="col-md-12 mb-4">
+            <div class="card event-card">
+                <img src="{{ event.image.url }}" class="card-img-top" alt="{{ event.title }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ event.title }}</h5>
+                    <p class="card-text">{{ event.description }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

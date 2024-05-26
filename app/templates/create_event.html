@@ -1,0 +1,149 @@
+{% extends 'app/index.html' %}
+
+{% block title %}
+Create Event
+{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background-color: #f0f0f0;
+    }
+    .form-container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.1);
+    }
+    .form-container h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 28px;
+        font-weight: bold;
+        color: white;
+        background-color: #007bff;
+        padding: 15px;
+        border-radius: 10px;
+        position: relative;
+    }
+    .form-container h2::before {
+        content: '';
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        right: -5px;
+        bottom: -5px;
+        border: 2px solid #007bff;
+        border-radius: 15px;
+        z-index: -1;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-group label {
+        display: block;
+        font-size: 16px;
+        color: #333;
+        margin-bottom: 5px;
+    }
+    .form-group input, .form-group textarea, .form-group select {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        color: #333;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        transition: border-color 0.3s;
+    }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+        border-color: #007bff;
+        outline: none;
+    }
+    .form-group textarea {
+        resize: vertical;
+    }
+    .btn-primary {
+        width: 100%;
+        padding: 10px;
+        font-size: 18px;
+        color: white;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+    .form-feedback {
+        display: none;
+        color: red;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="form-container">
+        <h2>Create Event</h2>
+        <form method="POST" enctype="multipart/form-data" id="createEventForm">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_title">Title:</label>
+                {{ form.title }}
+                <div class="form-feedback" id="titleFeedback">Title is required.</div>
+            </div>
+            <div class="form-group">
+                <label for="id_description">Description:</label>
+                {{ form.description }}
+                <div class="form-feedback" id="descriptionFeedback">Description is required.</div>
+            </div>
+            <div class="form-group">
+                <label for="id_image">Image:</label>
+                {{ form.image }}
+                <div class="form-feedback" id="imageFeedback">Image is required.</div>
+            </div>
+            <button type="submit" class="btn btn-primary">Create Event</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.getElementById('createEventForm').addEventListener('submit', function(event) {
+        var isValid = true;
+        
+        var title = document.getElementById('id_title');
+        var description = document.getElementById('id_description');
+        var image = document.getElementById('id_image');
+        
+        if (!title.value.trim()) {
+            isValid = false;
+            document.getElementById('titleFeedback').style.display = 'block';
+        } else {
+            document.getElementById('titleFeedback').style.display = 'none';
+        }
+
+        if (!description.value.trim()) {
+            isValid = false;
+            document.getElementById('descriptionFeedback').style.display = 'block';
+        } else {
+            document.getElementById('descriptionFeedback').style.display = 'none';
+        }
+
+        if (!image.value.trim()) {
+            isValid = false;
+            document.getElementById('imageFeedback').style.display = 'block';
+        } else {
+            document.getElementById('imageFeedback').style.display = 'none';
+        }
+
+        if (!isValid) {
+            event.preventDefault();
+        }
+    });
+</script>
+{% endblock %}
+

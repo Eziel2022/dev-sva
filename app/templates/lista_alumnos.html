@@ -1,0 +1,101 @@
+{% extends 'app/index.html' %}
+
+{% block title %}
+Lista de Alumnos
+{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background-color: #f0f0f0;
+    }
+    .container {
+        max-width: 900px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.1);
+    }
+    .title {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 28px;
+        font-weight: bold;
+        color: white;
+        background-color: #007bff;
+        padding: 15px;
+        border-radius: 10px;
+        position: relative;
+    }
+    .title::before {
+        content: '';
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        right: -5px;
+        bottom: -5px;
+        border: 2px solid #007bff;
+        border-radius: 15px;
+        z-index: -1;
+    }
+    .table-striped > tbody > tr:nth-of-type(odd) {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+    .table {
+        margin-bottom: 0;
+    }
+    .search-container {
+        margin-bottom: 20px;
+        margin-top: -20px;
+    }
+    .search-container input {
+        width: calc(100% - 60px);
+        padding: 10px;
+        border: 2px solid #007bff;
+        border-radius: 5px;
+        margin-right: 10px;
+    }
+    .search-container button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px; /* Ajuste de margen superior para el botón */
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="title">Student List</div>
+    <div class="search-container text-center">
+        <form method="GET" action="{% url 'student_list' %}">
+            <input type="text" name="q" placeholder="Search..." value="{{ request.GET.q }}">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Last Name</th>
+                <th>Dni</th>
+                <th>Phone</th> 
+                <th>Email</th> 
+            </tr>
+        </thead>
+        <tbody>
+            {% for alumno in alumnos %}
+            <tr>
+                <td>{{ alumno.nombre }}</td>
+                <td>{{ alumno.apellido }}</td>
+                <td>{{ alumno.dni }}</td>
+                <td>{{ alumno.numero_celular }}</td> 
+                <td>{{ alumno.correo_electronico }}</td> 
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

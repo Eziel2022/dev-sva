@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
+from django.utils import timezone
 
 class MyUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
@@ -45,14 +46,24 @@ class Notification(models.Model):
 
     def __str__(self):
         return self.title
-    
 
-class Event(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField()
-    date = models.DateTimeField()
-    location = models.CharField(max_length=200)
+class Alumno(models.Model):
+    nombre = models.CharField(max_length=100)
+    apellido = models.CharField(max_length=100)
+    dni = models.CharField(max_length=10)
+    numero_celular = models.CharField(max_length=15)
+    correo_electronico = models.EmailField()
 
     def __str__(self):
-        return self.name
+        return f"{self.nombre} {self.apellido}"
+
+
+class Event(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    image = models.ImageField(upload_to='events/', default='default.jpg')
+    created_at = models.DateTimeField(default=timezone.now)  # Establecer valor predeterminado
+    
+    def __str__(self):
+        return self.title
 
