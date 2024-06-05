@@ -50,7 +50,7 @@ class Notification(models.Model):
 class Alumno(models.Model):
     nombre = models.CharField(max_length=100)
     apellido = models.CharField(max_length=100)
-    dni = models.CharField(max_length=10)
+    dni = models.CharField(max_length=10, unique=True)  
     numero_celular = models.CharField(max_length=15)
     correo_electronico = models.EmailField()
 
@@ -62,7 +62,7 @@ class Event(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
     image = models.ImageField(upload_to='events/', default='default.jpg')
-    created_at = models.DateTimeField(default=timezone.now)  # Establecer valor predeterminado
+    created_at = models.DateTimeField(default=timezone.now)  
     
     def __str__(self):
         return self.title

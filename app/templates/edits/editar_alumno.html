@@ -1,0 +1,71 @@
+{% extends 'app/index.html' %}
+{% load form_filters %}
+
+{% block title %}
+Editar Alumno
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="text-center">Editar Alumno</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="id_nombre" class="form-label">Name</label>
+                            {{ form.nombre|add_class:"form-control" }}
+                            {% if form.nombre.errors %}
+                                <div class="text-danger">
+                                    {{ form.nombre.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_apellido" class="form-label">Last Name</label>
+                            {{ form.apellido|add_class:"form-control" }}
+                            {% if form.apellido.errors %}
+                                <div class="text-danger">
+                                    {{ form.apellido.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_dni" class="form-label">DNI</label>
+                            {{ form.dni|add_class:"form-control" }}
+                            {% if form.dni.errors %}
+                                <div class="text-danger">
+                                    {{ form.dni.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_numero_celular" class="form-label">Phone Number</label>
+                            {{ form.numero_celular|add_class:"form-control" }}
+                            {% if form.numero_celular.errors %}
+                                <div class="text-danger">
+                                    {{ form.numero_celular.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_correo_electronico" class="form-label">Email</label>
+                            {{ form.correo_electronico|add_class:"form-control" }}
+                            {% if form.correo_electronico.errors %}
+                                <div class="text-danger">
+                                    {{ form.correo_electronico.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

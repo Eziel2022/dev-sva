@@ -1,4 +1,5 @@
 {% extends 'app/index.html' %}
+{% load form_filters %}
 
 {% block title %}
 Lista de Alumnos
@@ -63,12 +64,12 @@ Lista de Alumnos
         border: none;
         border-radius: 5px;
         cursor: pointer;
-        margin-top: 10px; /* Ajuste de margen superior para el botón */
+        margin-top: 10px; 
     }
 </style>
 
 <div class="container mt-5">
-    <div class="title">Student List</div>
+    <div class="title">Students list</div>
     <div class="search-container text-center">
         <form method="GET" action="{% url 'student_list' %}">
             <input type="text" name="q" placeholder="Search..." value="{{ request.GET.q }}">
@@ -80,9 +81,10 @@ Lista de Alumnos
             <tr>
                 <th>Name</th>
                 <th>Last Name</th>
-                <th>Dni</th>
-                <th>Phone</th> 
+                <th>DNI</th>
+                <th>Phone Number</th> 
                 <th>Email</th> 
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -92,7 +94,10 @@ Lista de Alumnos
                 <td>{{ alumno.apellido }}</td>
                 <td>{{ alumno.dni }}</td>
                 <td>{{ alumno.numero_celular }}</td> 
-                <td>{{ alumno.correo_electronico }}</td> 
+                <td>{{ alumno.correo_electronico }}</td>
+                <td>
+                    <a href="{% url 'editar_correo' alumno.id %}" class="btn btn-warning btn-sm">Change</a>
+                </td>
             </tr>
             {% endfor %}
         </tbody>

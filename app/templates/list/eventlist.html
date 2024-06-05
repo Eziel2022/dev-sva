@@ -1,6 +1,5 @@
 {% extends 'app/index.html' %}
-
-{% load tz %} <!-- Cargar la etiqueta de tiempo para la zona horaria -->
+{% load tz %} 
 {% block title %}
 Lista de Eventos
 {% endblock %}
@@ -17,7 +16,6 @@ Lista de Eventos
                         <th>Name</th>
                         <th>Description</th>
                         <th>Created At</th>
-                        <th>Location</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -34,7 +32,6 @@ Lista de Eventos
                                 Sin fecha de creación
                             {% endif %}
                         </td>
-                        <td>{{ event.location }}</td>
                         <td>
                             <form method="POST" action="{% url 'delete_event' event.id %}">
                                 {% csrf_token %}
