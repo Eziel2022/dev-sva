@@ -27,7 +27,8 @@ class AlumnoForm(forms.ModelForm):
 class EventForm(forms.ModelForm):
     class Meta:
         model = Event
-        fields = ['title', 'description', 'image']
+        fields = ['title', 'description', 'image', 'event_type']
+
 
 class EditarCorreoForm(forms.ModelForm):
     class Meta:

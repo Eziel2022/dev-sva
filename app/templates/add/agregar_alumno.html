@@ -11,18 +11,18 @@ Crear Alumno
         <div class="col-md-8">
             <div class="card shadow-sm">
                 <div class="card-header bg-primary text-white">
-                    <h2 class="text-center">Add Student</h2>
+                    <h2 class="text-center">Agregar Alumno</h2>
                 </div>
                 <div class="card-body">
                     <form id="studentForm" method="post">
                         {% csrf_token %}
                         <div class="mb-3">
-                            <label for="id_nombre" class="form-label">Name</label>
+                            <label for="id_nombre" class="form-label">Nombre</label>
                             {{ form.nombre|add_class:"form-control" }}
                             <div id="nombreError" class="text-danger"></div>
                         </div>
                         <div class="mb-3">
-                            <label for="id_apellido" class="form-label">Last Name</label>
+                            <label for="id_apellido" class="form-label">Apellido</label>
                             {{ form.apellido|add_class:"form-control" }}
                             <div id="apellidoError" class="text-danger"></div>
                         </div>
@@ -32,17 +32,17 @@ Crear Alumno
                             <div id="dniError" class="text-danger"></div>
                         </div>
                         <div class="mb-3">
-                            <label for="id_numero_celular" class="form-label">Phone Number</label>
+                            <label for="id_numero_celular" class="form-label">Número de Teléfono</label>
                             {{ form.numero_celular|add_class:"form-control" }}
                             <div id="telefonoError" class="text-danger"></div>
                         </div>
                         <div class="mb-3">
-                            <label for="id_correo_electronico" class="form-label">Email</label>
+                            <label for="id_correo_electronico" class="form-label">Correo Electrónico</label>
                             {{ form.correo_electronico|add_class:"form-control" }}
                             <div id="emailError" class="text-danger"></div>
                         </div>
-                        <div class="text-center"> 
-                            <button id="submitButton" type="submit" class="btn btn-primary">Save</button>
+                        <div class="text-center">
+                            <button id="submitButton" type="submit" class="btn btn-primary">Guardar</button>
                         </div>
                     </form>
                 </div>
@@ -65,11 +65,11 @@ Crear Alumno
     });
 
     function validateForm() {
-        var nombre = document.getElementById("id_nombre").value;
-        var apellido = document.getElementById("id_apellido").value;
-        var dni = document.getElementById("id_dni").value;
-        var telefono = document.getElementById("id_numero_celular").value;
-        var email = document.getElementById("id_correo_electronico").value;
+        var nombre = document.getElementById("id_nombre").value.trim();
+        var apellido = document.getElementById("id_apellido").value.trim();
+        var dni = document.getElementById("id_dni").value.trim();
+        var telefono = document.getElementById("id_numero_celular").value.trim();
+        var email = document.getElementById("id_correo_electronico").value.trim();
 
         var nombreError = document.getElementById("nombreError");
         var apellidoError = document.getElementById("apellidoError");
@@ -86,27 +86,28 @@ Crear Alumno
         var isValid = true;
 
         if (nombre.length === 0) {
-            nombreError.innerHTML = "El nombre es obligatorio";
+            nombreError.innerHTML = "El nombre es obligatorio.";
             isValid = false;
         }
 
         if (apellido.length === 0) {
-            apellidoError.innerHTML = "El apellido es obligatorio";
+            apellidoError.innerHTML = "El apellido es obligatorio.";
             isValid = false;
         }
 
         if (dni.length !== 8 || isNaN(dni)) {
-            dniError.innerHTML = "El DNI debe contener 8 dígitos numéricos";
+            dniError.innerHTML = "El DNI debe contener 8 dígitos numéricos.";
             isValid = false;
         }
 
         if (telefono.length !== 10 || isNaN(telefono)) {
-            telefonoError.innerHTML = "El teléfono debe contener 10 dígitos numéricos";
+            telefonoError.innerHTML = "El teléfono debe contener 10 dígitos numéricos.";
             isValid = false;
         }
 
-        if (!email.includes("@")) {
-            emailError.innerHTML = "El correo electrónico debe ser válido '@' ";
+        var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailPattern.test(email)) {
+            emailError.innerHTML = "El correo electrónico debe ser válido.";
             isValid = false;
         }
 

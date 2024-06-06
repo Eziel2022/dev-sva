@@ -56,14 +56,22 @@ class Alumno(models.Model):
 
     def __str__(self):
         return f"{self.nombre} {self.apellido}"
-
+    
 
 class Event(models.Model):
+    EVENT_TYPES = (
+        ('general', 'General'),
+        ('becas', 'Becas'),
+        ('pasantias', 'Pasantías'),
+    )
+
     title = models.CharField(max_length=200)
     description = models.TextField()
-    image = models.ImageField(upload_to='events/', default='default.jpg')
-    created_at = models.DateTimeField(default=timezone.now)  
-    
+    image = models.ImageField(upload_to='events/')
+    event_type = models.CharField(max_length=50, choices=EVENT_TYPES)
+    created_at = models.DateTimeField(auto_now_add=True)
+
     def __str__(self):
         return self.title
+
 

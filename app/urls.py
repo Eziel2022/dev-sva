@@ -1,3 +1,4 @@
+# urls.py
 from django.urls import path
 from . import views
 
@@ -7,7 +8,7 @@ urlpatterns = [
     path('profile/', views.profile_view, name='profile'),
     path('logout/', views.logout_view, name='logout'),
     path('notifications/', views.notification_list, name='notification_list'),
-    path('notifications/create/', views.create_notification, name='notycreate'),
+    path('notifications/create/', views.create_notification, name='notycreate'),  # Asegúrate de que esta línea esté presente
     path('events/', views.event_list, name='eventlist'),
     path('agregar_alumno/', views.agregar_alumno, name='agregar_alumno'),
     path('lista_alumnos/', views.lista_alumnos, name='lista_alumnos'),

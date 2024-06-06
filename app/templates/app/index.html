@@ -170,6 +170,62 @@
   </header>
   <div class="container mt-5 content">
     {% block content %}
+    <div class="row">
+      <div class="col-md-12 text-center mb-4">
+          <h2>Eventos Destacados</h2>
+      </div>
+  </div>
+  <div class="row">
+      {% for event in events %}
+      <div class="col-md-4">
+          <div class="card">
+              <img src="{{ event.image.url }}" class="card-img-top" alt="{{ event.title }}">
+              <div class="card-body">
+                  <h5 class="card-title">{{ event.title }}</h5>
+                  <p class="card-text">{{ event.description }}</p>
+              </div>
+          </div>
+      </div>
+      {% endfor %}
+  </div>
+  
+  <div class="row mt-5">
+      <div class="col-md-12 text-center mb-4">
+          <h2>Eventos de Becas</h2>
+      </div>
+  </div>
+  <div class="row">
+      {% for beca_event in beca_events %}
+      <div class="col-md-4">
+          <div class="card">
+              <img src="{{ beca_event.image.url }}" class="card-img-top" alt="{{ beca_event.title }}">
+              <div class="card-body">
+                  <h5 class="card-title">{{ beca_event.title }}</h5>
+                  <p class="card-text">{{ beca_event.description }}</p>
+              </div>
+          </div>
+      </div>
+      {% endfor %}
+  </div>
+
+  <div class="row mt-5">
+      <div class="col-md-12 text-center mb-4">
+          <h2>Eventos de Pasantías</h2>
+      </div>
+  </div>
+  <div class="row">
+      {% for pasantia_event in pasantia_events %}
+      <div class="col-md-4">
+          <div class="card">
+              <img src="{{ pasantia_event.image.url }}" class="card-img-top" alt="{{ pasantia_event.title }}">
+              <div class="card-body">
+                  <h5 class="card-title">{{ pasantia_event.title }}</h5>
+                  <p class="card-text">{{ pasantia_event.description }}</p>
+              </div>
+          </div>
+      </div>
+      {% endfor %}
+  </div>
     {% endblock %}
 </div>
 
@@ -180,3 +236,4 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
+
