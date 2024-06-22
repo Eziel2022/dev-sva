@@ -11,18 +11,18 @@ Crear Alumno
         <div class="col-md-8">
             <div class="card shadow-sm">
                 <div class="card-header bg-primary text-white">
-                    <h2 class="text-center">Agregar Alumno</h2>
+                    <h2 class="text-center">Add Students</h2>
                 </div>
                 <div class="card-body">
                     <form id="studentForm" method="post">
                         {% csrf_token %}
                         <div class="mb-3">
-                            <label for="id_nombre" class="form-label">Nombre</label>
+                            <label for="id_nombre" class="form-label">Name</label>
                             {{ form.nombre|add_class:"form-control" }}
                             <div id="nombreError" class="text-danger"></div>
                         </div>
                         <div class="mb-3">
-                            <label for="id_apellido" class="form-label">Apellido</label>
+                            <label for="id_apellido" class="form-label">Last Name</label>
                             {{ form.apellido|add_class:"form-control" }}
                             <div id="apellidoError" class="text-danger"></div>
                         </div>
@@ -32,17 +32,17 @@ Crear Alumno
                             <div id="dniError" class="text-danger"></div>
                         </div>
                         <div class="mb-3">
-                            <label for="id_numero_celular" class="form-label">Número de Teléfono</label>
+                            <label for="id_numero_celular" class="form-label">Phone Number</label>
                             {{ form.numero_celular|add_class:"form-control" }}
                             <div id="telefonoError" class="text-danger"></div>
                         </div>
                         <div class="mb-3">
-                            <label for="id_correo_electronico" class="form-label">Correo Electrónico</label>
+                            <label for="id_correo_electronico" class="form-label">Email</label>
                             {{ form.correo_electronico|add_class:"form-control" }}
                             <div id="emailError" class="text-danger"></div>
                         </div>
                         <div class="text-center">
-                            <button id="submitButton" type="submit" class="btn btn-primary">Guardar</button>
+                            <button id="submitButton" type="submit" class="btn btn-primary">Save</button>
                         </div>
                     </form>
                 </div>

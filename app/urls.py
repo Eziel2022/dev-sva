@@ -10,13 +10,13 @@ urlpatterns = [
     path('notifications/', views.notification_list, name='notification_list'),
     path('notifications/create/', views.create_notification, name='notycreate'),  # Asegúrate de que esta línea esté presente
     path('events/', views.event_list, name='eventlist'),
-    path('agregar_alumno/', views.agregar_alumno, name='agregar_alumno'),
-    path('lista_alumnos/', views.lista_alumnos, name='lista_alumnos'),
+    path('eventos/', views.events_view, name='events'),
     path('create_event/', views.create_event, name='create_event'),
     path('events/<int:event_id>/delete/', views.delete_event, name='delete_event'),
+    path('agregar_alumno/', views.agregar_alumno, name='agregar_alumno'),
+    path('lista_alumnos/', views.lista_alumnos, name='lista_alumnos'),
     path('students/', views.student_list, name='student_list'),
     path('alumno/<int:alumno_id>/editar_correo/', views.editar_correo, name='editar_correo'),
-    path('events/', views.events_view, name='events'),
     path('pasantias/', views.pasantias_view, name='pasantias'),
     path('becas/', views.becas_view, name='becas'),
     

@@ -63,6 +63,7 @@ class Event(models.Model):
         ('general', 'General'),
         ('becas', 'Becas'),
         ('pasantias', 'Pasantías'),
+        ('events', 'Events'),
     )
 
     title = models.CharField(max_length=200)

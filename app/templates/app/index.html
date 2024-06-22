@@ -10,7 +10,7 @@
         }
 
         .header {
-            background: url('https://source.unsplash.com/1600x900/?education') no-repeat center center;
+            background: url('https://i0.wp.com/cms.babbel.news/wp-content/uploads/2022/02/Most_Beautiful_Libraries-1.png') no-repeat center center;
             background-size: cover;
             height: 400px;
             color: white;
@@ -172,17 +172,23 @@
     {% block content %}
     <div class="row">
       <div class="col-md-12 text-center mb-4">
-          <h2>Eventos Destacados</h2>
+          <h2>IFES (a trabajar)</h2>
       </div>
   </div>
+
+  <div class="row mt-5">
+    <div class="col-md-12 text-center mb-4">
+        <h2>Eventos de Eventos</h2>
+    </div>
+  </div>
   <div class="row">
-      {% for event in events %}
+      {% for event_event in events_events %}
       <div class="col-md-4">
           <div class="card">
-              <img src="{{ event.image.url }}" class="card-img-top" alt="{{ event.title }}">
+              <img src="{{ event_event.image.url }}" class="card-img-top" alt="{{ event_event.title }}">
               <div class="card-body">
-                  <h5 class="card-title">{{ event.title }}</h5>
-                  <p class="card-text">{{ event.description }}</p>
+                  <h5 class="card-title">{{ event_event.title }}</h5>
+                  <p class="card-text">{{ event_event.description }}</p>
               </div>
           </div>
       </div>

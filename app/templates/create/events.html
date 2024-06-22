@@ -1,0 +1,24 @@
+{% extends 'app/index.html' %}
+
+{% block title %}
+Events
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center">Eventos </h2>
+    <div class="row">
+        {% for event in events_events %}
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <img src="{{ event.image.url }}" class="card-img-top" alt="{{ event.title }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ event.title }}</h5>
+                    <p class="card-text">{{ event.description }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

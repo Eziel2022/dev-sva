@@ -33,7 +33,7 @@ def create_event(request):
             elif event.event_type == 'pasantias':
                 return redirect('pasantias')
             else:
-                return redirect('inicio')  
+                return redirect('events')  
     else:
         form = EventForm()
     return render(request, 'create/create_event.html', {'form': form})
@@ -135,7 +135,8 @@ def some_view(request):
     return render(request, 'template.html')
 
 def events_view(request):
-    return render(request, 'events.html')
+    events_events = Event.objects.filter(event_type='events')
+    return render(request, 'create/events.html', {'events_events': events_events})
 
 def pasantias_view(request):
     pasantias_events = Event.objects.filter(event_type='pasantias')
