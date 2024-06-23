@@ -39,8 +39,18 @@ def create_event(request):
     return render(request, 'create/create_event.html', {'form': form})
 
 def home_view(request):
-    events = Event.objects.exclude(event_type__in=['becas', 'pasantias'])
-    return render(request, 'home.html', {'events': events})
+    events_events = Event.objects.filter(event_type='events')[:2]  # Obtener los primeros 2 eventos
+    beca_events = Event.objects.filter(event_type='becas')[:2]      # Obtener las primeras 2 becas
+    pasantia_events = Event.objects.filter(event_type='pasantias')[:2]  # Obtener las primeras 2 pasantías
+
+    context = {
+        'events_events': events_events,
+        'beca_events': beca_events,
+        'pasantia_events': pasantia_events,
+    }
+    return render(request, 'app/home.html', context)
+    #events = Event.objects.exclude(event_type__in=['becas', 'pasantias', 'events'])
+    #return render(request, 'home.html', {})
 
 def login_view(request):
     if request.method == 'POST':
@@ -135,13 +145,13 @@ def some_view(request):
     return render(request, 'template.html')
 
 def events_view(request):
-    events_events = Event.objects.filter(event_type='events')
+    events_events = Event.objects.filter(event_type='events').order_by('-created_at')
     return render(request, 'create/events.html', {'events_events': events_events})
 
 def pasantias_view(request):
-    pasantias_events = Event.objects.filter(event_type='pasantias')
+    pasantias_events = Event.objects.filter(event_type='pasantias').order_by('-created_at')
     return render(request, 'create/pasantias.html', {'pasantias_events': pasantias_events})
 
 def becas_view(request):
-    becas_events = Event.objects.filter(event_type='becas')
+    becas_events = Event.objects.filter(event_type='becas').order_by('-created_at')
     return render(request, 'create/becas.html', {'becas_events': becas_events})

@@ -1,0 +1,84 @@
+{% extends 'app/index.html' %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12 text-center mb-4">
+        <h2>IFES (a trabajar)</h2>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-12 text-center mb-4">
+        <h2>Últimos Eventos</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <h3>Eventos Generales</h3>
+        {% for event_event in events_events %}
+        <div class="card mb-3">
+            <img src="{{ event_event.image.url }}" class="card-img-top" alt="{{ event_event.title }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ event_event.title }}</h5>
+                <p class="card-text">{{ event_event.description }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="col-md-4">
+        <h3>Becas</h3>
+        {% for beca_event in beca_events %}
+        <div class="card mb-3">
+            <img src="{{ beca_event.image.url }}" class="card-img-top" alt="{{ beca_event.title }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ beca_event.title }}</h5>
+                <p class="card-text">{{ beca_event.description }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="col-md-4">
+        <h3>Pasantías</h3>
+        {% for pasantia_event in pasantia_events %}
+        <div class="card mb-3">
+            <img src="{{ pasantia_event.image.url }}" class="card-img-top" alt="{{ pasantia_event.title }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ pasantia_event.title }}</h5>
+                <p class="card-text">{{ pasantia_event.description }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div id="latest_events">
+    <!-- Contenido dinámico que se actualizará automáticamente -->
+    <!-- Aquí se insertará el contenido actualizado -->
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Actualizar el contenido automáticamente cada 60 segundos
+    setInterval(function() {
+        $.ajax({
+            url: "{% url 'home_refresh' %}",
+            type: 'GET',
+            success: function(data) {
+                $('#latest_events').html(data);
+            },
+            error: function(xhr, status, error) {
+                console.error('Error en la solicitud AJAX:', status, error);
+            }
+        });
+    }, 60000);  // 60000 milisegundos = 60 segundos
+</script>
+{% endblock %}
+
+

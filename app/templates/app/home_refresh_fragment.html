@@ -1,0 +1,29 @@
+{% for event_event in events_events %}
+<div class="card mb-3">
+    <img src="{{ event_event.image.url }}" class="card-img-top" alt="{{ event_event.title }}">
+    <div class="card-body">
+        <h5 class="card-title">{{ event_event.title }}</h5>
+        <p class="card-text">{{ event_event.description }}</p>
+    </div>
+</div>
+{% endfor %}
+
+{% for beca_event in beca_events %}
+<div class="card mb-3">
+    <img src="{{ beca_event.image.url }}" class="card-img-top" alt="{{ beca_event.title }}">
+    <div class="card-body">
+        <h5 class="card-title">{{ beca_event.title }}</h5>
+        <p class="card-text">{{ beca_event.description }}</p>
+    </div>
+</div>
+{% endfor %}
+
+{% for pasantia_event in pasantia_events %}
+<div class="card mb-3">
+    <img src="{{ pasantia_event.image.url }}" class="card-img-top" alt="{{ pasantia_event.title }}">
+    <div class="card-body">
+        <h5 class="card-title">{{ pasantia_event.title }}</h5>
+        <p class="card-text">{{ pasantia_event.description }}</p>
+    </div>
+</div>
+{% endfor %}
