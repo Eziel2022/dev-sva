@@ -106,6 +106,10 @@ Create Event
                 {{ form.image }}
                 <div class="form-feedback" id="imageFeedback">Image is required.</div>
             </div>
+            <div class="form-group">
+                <label for="id_event_type">Event Type:</label>
+                {{ form.event_type }}
+            </div>
             <button type="submit" class="btn btn-primary">Create Event</button>
         </form>
     </div>
@@ -146,4 +150,3 @@ Create Event
     });
 </script>
 {% endblock %}
-

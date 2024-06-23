@@ -1,0 +1,82 @@
+{% extends 'app/index.html' %}
+{% block title %}
+Inicio de sesión
+{% endblock %}
+
+{% block content %}
+<style>
+   .login-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 40px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    margin-top: 50px; 
+    margin-bottom: 50px; 
+    background: linear-gradient(to bottom, #ffffff, #f1f1f1);
+    text-align: center; 
+    }
+
+    .login-container h2 {
+        margin-bottom: 20px;
+        font-size: 24px;
+        color: #c0be2f;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .login-form .form-group {
+        margin-bottom: 20px;
+    }
+
+    .login-form .form-control {
+        border-radius: 25px;
+        padding: 15px;
+        border: 1px solid #ddd;
+    }
+
+    .login-form .btn-primary {
+        border-radius: 25px;
+        padding: 10px 30px;
+        background-color: #c0be2f;
+        border: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .login-form .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .login-form .form-label {
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 5px;
+        display: block;
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="login-container">
+                <h2 class="text-center">Log In</h2>
+                <form method="post" class="login-form">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email:</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="form-label">Password:</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

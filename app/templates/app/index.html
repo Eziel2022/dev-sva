@@ -2,13 +2,104 @@
 <html lang="en">
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <title>
-        {% block title %}
-        {% endblock %}
-    </title>
+    <title>{% block title %}{% endblock %}</title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            background: url('https://i0.wp.com/cms.babbel.news/wp-content/uploads/2022/02/Most_Beautiful_Libraries-1.png') no-repeat center center;
+            background-size: cover;
+            height: 400px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+        .header h1 {
+            font-size: 50px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: colorChange 5s linear infinite;
+        }
+
+        @keyframes colorChange {
+            0% { color: #007bff; }
+            25% { color: #fffb00; }
+            50% { color: #ff66a3; }
+            75% { color: #a3ff66; }
+            100% { color: #007bff; }
+        }
+
+        .content {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: -50px;
+        }
+
+        .card {
+            border: none;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        .card img {
+            border-radius: 10px 10px 0 0;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .card-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        .card-text {
+            font-size: 16px;
+        }
+
+        .footer {
+            background: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .footer a {
+            color: #66aaff;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        
+        .navbar-nav .nav-link {
+            position: relative;
+            display: inline-block;
+            padding: 10px 20px;
+            margin-right: 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .navbar-nav .nav-link:hover {
+            background-color: #beb530;
+            color: white !important;
+            transform: scale(1.1);
+        }
+        .navbar-nav .nav-link:active {
+            background-color: #0056b3;
+            transform: scale(0.95);
+        }
+    </style>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Student Virtual Assistant</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,18 +115,14 @@
             <a class="nav-link" href="{% url 'profile' %}">Profile</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Create
-            </a>
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Create</a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="{% url 'notycreate' %}">Create Notification</a></li>
               <li><a class="dropdown-item" href="{% url 'create_event' %}">Create Event</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              View
-            </a>
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">View</a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="{% url 'notification_list' %}">View Notifications</a></li>
               <li><a class="dropdown-item" href="{% url 'eventlist' %}">View Events</a></li>
@@ -43,9 +130,7 @@
             </ul>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Add
-            </a>
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Add</a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="{% url 'agregar_alumno' %}">Student</a></li>
             </ul>
@@ -54,27 +139,107 @@
             <a class="nav-link" href="{% url 'logout' %}">Log out</a>
           </li>
           {% else %}
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Login
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="{% url 'login' %}">Sign in</a></li>
-            </ul>
-          </li>
-          {% endif %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'events' %}">Events</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'pasantias' %}">Pasantías</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'becas' %}">Becas</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Login</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'login' %}">Sign in</a></li>
+              </ul>
+            </li>
+            {% endif %}
+
         </ul>
         <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
+          <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Seach">
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
       </div>
     </div>
   </nav>
-  <div class="container mt-5">
-      {% block content %}
-      {% endblock %}
+
+  <header class="header">
+    <h1>Welcome to Student Virtual Assistant</h1>
+  </header>
+  <div class="container mt-5 content">
+    {% block content %}
+    <div class="row">
+      <div class="col-md-12 text-center mb-4">
+          <h2>IFES (a trabajar)</h2>
+      </div>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  <div class="row mt-5">
+    <div class="col-md-12 text-center mb-4">
+        <h2>Eventos de Eventos</h2>
+    </div>
+  </div>
+  <div class="row">
+      {% for event_event in events_events %}
+      <div class="col-md-4">
+          <div class="card">
+              <img src="{{ event_event.image.url }}" class="card-img-top" alt="{{ event_event.title }}">
+              <div class="card-body">
+                  <h5 class="card-title">{{ event_event.title }}</h5>
+                  <p class="card-text">{{ event_event.description }}</p>
+              </div>
+          </div>
+      </div>
+      {% endfor %}
+  </div>
+  
+  <div class="row mt-5">
+      <div class="col-md-12 text-center mb-4">
+          <h2>Eventos de Becas</h2>
+      </div>
+  </div>
+  <div class="row">
+      {% for beca_event in beca_events %}
+      <div class="col-md-4">
+          <div class="card">
+              <img src="{{ beca_event.image.url }}" class="card-img-top" alt="{{ beca_event.title }}">
+              <div class="card-body">
+                  <h5 class="card-title">{{ beca_event.title }}</h5>
+                  <p class="card-text">{{ beca_event.description }}</p>
+              </div>
+          </div>
+      </div>
+      {% endfor %}
+  </div>
+
+  <div class="row mt-5">
+      <div class="col-md-12 text-center mb-4">
+          <h2>Eventos de Pasantías</h2>
+      </div>
+  </div>
+  <div class="row">
+      {% for pasantia_event in pasantia_events %}
+      <div class="col-md-4">
+          <div class="card">
+              <img src="{{ pasantia_event.image.url }}" class="card-img-top" alt="{{ pasantia_event.title }}">
+              <div class="card-body">
+                  <h5 class="card-title">{{ pasantia_event.title }}</h5>
+                  <p class="card-text">{{ pasantia_event.description }}</p>
+              </div>
+          </div>
+      </div>
+      {% endfor %}
+  </div>
+    {% endblock %}
+</div>
+
+<footer class="footer">
+  <p>&copy; 2024 Student Virtual Assistant. All rights reserved. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
+

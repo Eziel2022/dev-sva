@@ -1,0 +1,117 @@
+{% extends 'app/index.html' %}
+{% load form_filters %}
+
+{% block title %}
+Crear Alumno
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="text-center">Add Students</h2>
+                </div>
+                <div class="card-body">
+                    <form id="studentForm" method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="id_nombre" class="form-label">Name</label>
+                            {{ form.nombre|add_class:"form-control" }}
+                            <div id="nombreError" class="text-danger"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_apellido" class="form-label">Last Name</label>
+                            {{ form.apellido|add_class:"form-control" }}
+                            <div id="apellidoError" class="text-danger"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_dni" class="form-label">DNI</label>
+                            {{ form.dni|add_class:"form-control" }}
+                            <div id="dniError" class="text-danger"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_numero_celular" class="form-label">Phone Number</label>
+                            {{ form.numero_celular|add_class:"form-control" }}
+                            <div id="telefonoError" class="text-danger"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_correo_electronico" class="form-label">Email</label>
+                            {{ form.correo_electronico|add_class:"form-control" }}
+                            <div id="emailError" class="text-danger"></div>
+                        </div>
+                        <div class="text-center">
+                            <button id="submitButton" type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById("studentForm").addEventListener("input", function(event) {
+        validateForm();
+    });
+
+    document.getElementById("studentForm").addEventListener("submit", function(event) {
+        if (!validateForm()) {
+            event.preventDefault();
+        } else {
+            alert("¡El formulario se ha enviado correctamente!");
+        }
+    });
+
+    function validateForm() {
+        var nombre = document.getElementById("id_nombre").value.trim();
+        var apellido = document.getElementById("id_apellido").value.trim();
+        var dni = document.getElementById("id_dni").value.trim();
+        var telefono = document.getElementById("id_numero_celular").value.trim();
+        var email = document.getElementById("id_correo_electronico").value.trim();
+
+        var nombreError = document.getElementById("nombreError");
+        var apellidoError = document.getElementById("apellidoError");
+        var dniError = document.getElementById("dniError");
+        var telefonoError = document.getElementById("telefonoError");
+        var emailError = document.getElementById("emailError");
+
+        nombreError.innerHTML = "";
+        apellidoError.innerHTML = "";
+        dniError.innerHTML = "";
+        telefonoError.innerHTML = "";
+        emailError.innerHTML = "";
+
+        var isValid = true;
+
+        if (nombre.length === 0) {
+            nombreError.innerHTML = "El nombre es obligatorio.";
+            isValid = false;
+        }
+
+        if (apellido.length === 0) {
+            apellidoError.innerHTML = "El apellido es obligatorio.";
+            isValid = false;
+        }
+
+        if (dni.length !== 8 || isNaN(dni)) {
+            dniError.innerHTML = "El DNI debe contener 8 dígitos numéricos.";
+            isValid = false;
+        }
+
+        if (telefono.length !== 10 || isNaN(telefono)) {
+            telefonoError.innerHTML = "El teléfono debe contener 10 dígitos numéricos.";
+            isValid = false;
+        }
+
+        var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailPattern.test(email)) {
+            emailError.innerHTML = "El correo electrónico debe ser válido.";
+            isValid = false;
+        }
+
+        return isValid;
+    }
+</script>
+{% endblock %}

@@ -10,10 +10,14 @@ Perfil de usuario
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header bg-primary text-white">
-                    <h2 class="text-center">User profile</h2>
+                    <h2 class="text-center">Perfil de usuario</h2>
                 </div>
                 <div class="card-body">
                     <p><strong>Email:</strong> {{ user.email }}</p>
+                    <p><strong>Name:</strong> {{ user.first_name|default:"Ezequiel" }}</p>
+                    <p><strong>Last Name:</strong> {{ user.last_name|default:"Torres" }}</p>
+                    <p><strong>DNI:</strong> {{ user.dni|default:"41903925" }}</p>
+                    <p><strong>Rol:</strong> {{ user.rol|default:"Support" }}</p>
                 </div>
             </div>
         </div>
