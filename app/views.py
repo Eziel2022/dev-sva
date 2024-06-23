@@ -8,6 +8,7 @@ from django.db.models import Q
 from .models import Notification, Alumno, Event
 from .forms import NotificationForm, AlumnoForm, EventForm, EditarCorreoForm
 from .tasks import send_notification_email
+from django.http import HttpResponseNotAllowed
 
 @login_required
 def event_list(request):
@@ -49,8 +50,6 @@ def home_view(request):
         'pasantia_events': pasantia_events,
     }
     return render(request, 'app/home.html', context)
-    #events = Event.objects.exclude(event_type__in=['becas', 'pasantias', 'events'])
-    #return render(request, 'home.html', {})
 
 def login_view(request):
     if request.method == 'POST':
@@ -94,11 +93,12 @@ def lista_alumnos(request):
 
 @login_required
 def delete_event(request, event_id):
-    event = get_object_or_404(Event, pk=event_id)
+    event = get_object_or_404(Event, id=event_id)
     if request.method == 'POST':
         event.delete()
-        return redirect('event_list')
-    return redirect('event_list')
+        return redirect('eventlist')
+    else:
+        return HttpResponseNotAllowed(['POST'])
 
 @login_required
 def student_list(request):
